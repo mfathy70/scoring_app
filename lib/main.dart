@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  BottomNavigationBar BottomBar() {
+  /*BottomNavigationBar BottomBar() {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
@@ -113,5 +113,5 @@ class _MyHomePageState extends State<MyHomePage> {
       currentIndex: selectedIndex,
       onTap: onItemTapped,
     );
-  }
+  }*/
 }
