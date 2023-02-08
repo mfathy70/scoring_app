@@ -126,8 +126,9 @@ class _ScoringState extends State<Scoring> {
                     child: const Text('Cancel')),
                 ElevatedButton(
                   onPressed: () {
+                    var overall = excScore + diffScore + floScore;
                     Provider.of<GetAtlete>(context, listen: false)
-                        .setScore(excScore + diffScore + floScore);
+                        .setScore(overall, excScore, diffScore, floScore);
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(

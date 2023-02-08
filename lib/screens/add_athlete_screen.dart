@@ -113,6 +113,9 @@ class _AddAthleteState extends State<AddAthlete> {
       'id': int.parse(idController.text),
       'name': nameController.text.toString(),
       'category': categoryController.toString(),
+      'excScore': 0,
+      'diffScore': 0,
+      'floScore': 0,
       'score': 0
     };
     print(athleteData);

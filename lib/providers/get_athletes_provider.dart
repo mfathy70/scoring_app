@@ -23,9 +23,14 @@ class GetAtlete with ChangeNotifier {
     notifyListeners();
   }
 
-  void setScore(int score) async {
+  void setScore(int score, int excScore, int diffScore, int floScore) async {
     var collection = FirebaseFirestore.instance.collection('Athletes');
 
+    await collection.doc(id).update({
+      "excScore": excScore,
+      "diffScore": diffScore,
+      "floScore": floScore
+    }).then((value) => null);
     await collection.doc(id).update({"score": score}).then((value) => null);
     print(score);
 
