@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test/widgets/error_snakbar.dart';
+import 'package:test/widgets/success_snackbar.dart';
 import '../widgets/form_text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -107,7 +108,7 @@ class _AddAthleteState extends State<AddAthlete> {
     );
   }
 
-  Future<void> addAthleteMethod(TextEditingController idController,
+  Future<dynamic> addAthleteMethod(TextEditingController idController,
       TextEditingController nameController, String? categoryController) async {
     Map<String, dynamic> athleteData = {
       'id': int.parse(idController.text),
@@ -119,11 +120,16 @@ class _AddAthleteState extends State<AddAthlete> {
       'score': 0
     };
     print(athleteData);
-    return FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection('Athletes')
         .doc(idController.text.toString())
         .set(athleteData)
-        .then((value) => print('Added'))
-        .catchError((error) => print('Failed to add user : $error'));
+        .then((value) {
+      print('Added');
+      successSnackbar(context, 'Athlete Added');
+    }).catchError((error) {
+      print('Failed to add user : $error');
+      ErrorSnackBar(context, 'Failed to add user : $error');
+    });
   }
 }
